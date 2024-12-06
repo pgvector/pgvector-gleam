@@ -1,7 +1,6 @@
 import envoy
 import gleam/dynamic
 import gleam/io
-import gleam/string
 import pog
 
 pub fn main() {
@@ -39,7 +38,7 @@ pub fn main() {
     |> pog.parameter(pog.text("[1,1,1]"))
     |> pog.returning(dynamic.element(0, dynamic.int))
     |> pog.execute(db)
-  io.println(string.inspect(response.rows))
+  io.debug(response.rows)
 
   let assert Ok(_) =
     pog.query("CREATE INDEX ON items USING hnsw (embedding vector_l2_ops)")
