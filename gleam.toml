@@ -1,0 +1,7 @@
+name = "pgvector"
+version = "0.1.0"
+
+[dependencies]
+envoy = ">= 1.0.2 and < 2.0.0"
+gleam_stdlib = ">= 0.34.0 and < 2.0.0"
+pog = ">= 1.0.1 and < 2.0.0"
