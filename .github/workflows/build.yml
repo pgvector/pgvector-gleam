@@ -20,4 +20,5 @@ jobs:
           cd pgvector
           make
           sudo make install
+      - run: gleam deps download
       - run: gleam run
