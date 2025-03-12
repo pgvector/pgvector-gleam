@@ -76,5 +76,6 @@ To get started with development:
 ```sh
 git clone https://github.com/pgvector/pgvector-gleam.git
 cd pgvector-gleam
+createdb pgvector_gleam_test
 gleam run
 ```
