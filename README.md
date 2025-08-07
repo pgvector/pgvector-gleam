@@ -46,7 +46,7 @@ Get the nearest neighbors
 let assert Ok(response) =
   pog.query("SELECT id FROM items ORDER BY embedding <-> $1::text::vector LIMIT 5")
   |> pog.parameter(pog.text("[3,1,2]"))
-  |> pog.returning(dynamic.element(0, dynamic.int))
+  |> pog.returning(decode.at([0], decode.int))
   |> pog.execute(db)
 ```
 

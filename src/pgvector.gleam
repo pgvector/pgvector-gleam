@@ -30,17 +30,12 @@ pub fn main() {
     |> pog.parameter(pog.text("[1,1,2]"))
     |> pog.execute(db)
 
-  let row_decoder = {
-    use id <- decode.field(0, decode.int)
-    decode.success(#(id))
-  }
-
   let assert Ok(response) =
     pog.query(
       "SELECT id FROM items ORDER BY embedding <-> $1::text::vector LIMIT 5",
     )
     |> pog.parameter(pog.text("[1,1,1]"))
-    |> pog.returning(row_decoder)
+    |> pog.returning(decode.at([0], decode.int))
     |> pog.execute(db)
   echo response.rows
 
