@@ -1,14 +1,17 @@
 import envoy
 import gleam/dynamic/decode
+import gleam/erlang/process
 import pog
 
 pub fn main() {
   let assert Ok(user) = envoy.get("USER")
-  let db =
-    pog.default_config()
+  let pool_name = process.new_name("pgvector_gleam_test")
+  let assert Ok(actor) =
+    pog.default_config(pool_name)
     |> pog.database("pgvector_gleam_test")
     |> pog.user(user)
-    |> pog.connect
+    |> pog.start
+  let db = actor.data
 
   let assert Ok(_) =
     pog.query("CREATE EXTENSION IF NOT EXISTS vector") |> pog.execute(db)
