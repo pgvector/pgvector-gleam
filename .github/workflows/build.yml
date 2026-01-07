@@ -4,11 +4,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: erlef/setup-beam@v1
         with:
           otp-version: 28
-          gleam-version: 1.12
+          gleam-version: 1.14
           rebar3-version: 3.25
       - uses: ankane/setup-postgres@v1
         with:
